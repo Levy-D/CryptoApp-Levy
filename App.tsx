@@ -4,12 +4,23 @@ import Header from './components/Header';
 import SubHeader from './components/SubHeader';
 import CryptoData from './components/GetTop5CryptoCurrency';
 
+
+
 const App = () => {
+  let favoritesList = [];
+
+  const addToFavorites = (item) => {
+    console.log('addToFavorites test', item.id);
+  };
+
+
   return (
     <View style={styles.container}>
       <Header />
+      <SubHeader title="Favorites" />
+      {/* <FavoritesList /> */}
       <SubHeader title="Top 5 Crypto Currency" />
-      <CryptoData />
+      <CryptoData onFavorite={addToFavorites} />
     </View>
   )
 };

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList } from 'react-native';
 import ListItem from './ListItem';
 
-const Data = () => {
+const Data = ({ onFavorite }) => {
 
   const client = axios.create({
     baseURL: "https://pro-api.coinmarketcap.com",
@@ -33,7 +33,7 @@ const Data = () => {
     <View>
       <FlatList
         data={data}
-        renderItem={({ item }) => <ListItem item={item} />}
+        renderItem={({ item }) => <ListItem item={item} onFavorite={onFavorite} />}
       />
     </View>
   );

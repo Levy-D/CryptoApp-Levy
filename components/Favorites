@@ -1,0 +1,10 @@
+import React from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+import ListItem from './ListItem'
+
+
+const FavoritesList = () => {
+
+};
+
+export default FavoritesList;
