@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import IHeader from './Interfaces/IHeader'
 
-
-const Header = ({ title }) => {
+const Header = ({ title }: IHeader) => {
     return (
         <View style={styles.header} >
             <Text style={styles.text}>{title}</Text>
