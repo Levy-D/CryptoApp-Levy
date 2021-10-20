@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
-// import { Icon } from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import IListItem from './Interfaces/IListItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ListItem = ({ item, onFavorite }: IListItem) => {
+
     let price = item.quote.USD.price;
     price = parseFloat(price).toFixed(2);
     let percent_24h = item.quote.USD.percent_change_24h;
@@ -33,6 +34,24 @@ const ListItem = ({ item, onFavorite }: IListItem) => {
         }
     }
 
+    const btnPress = () => {
+        try {
+            let storageId: string = "ID_" + item.id;
+            if (!item.isFavorite) {
+                setFavorite(item.id);
+                saveValue(storageId);
+                onFavorite();
+                item.isFavorite = true;
+            }
+            else {
+                deleteValue(storageId);
+                onFavorite();
+                item.isFavorite = false;
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <TouchableOpacity style={styles.listItem}>
@@ -40,26 +59,7 @@ const ListItem = ({ item, onFavorite }: IListItem) => {
                 <Text style={styles.listItemName}>{item.name}</Text>
                 <Text style={styles.listItemPrice}>$ {price}</Text>
                 <Text style={(percent_24h < 0) ? styles.listItemPercentNegative : styles.listItemPercentPositive}>{percent_24h}%</Text>
-                {/* <Icon name="star" ></Icon> */}
-                <Button onPress={() => {
-                    try {
-                        let storageId: string = "ID_" + item.id;
-                        if (!item.isFavorite) {
-                            setFavorite(item.id);
-                            saveValue(storageId);
-                            onFavorite();
-                            item.isFavorite = true;
-                        }
-                        else {
-                            deleteValue(storageId);
-                            onFavorite();
-                            item.isFavorite = false;;
-                        }
-                    } catch (e) {
-                        console.log(e);
-                    }
-                }
-                } title='FAV' color='yellow' />
+                <Icon style={item.isFavorite ? styles.favIconIsFavoriteTrue : styles.favIconIsFavoriteFalse} name="star" onPress={() => btnPress()} ></Icon>
             </View>
         </TouchableOpacity>
     )
@@ -102,6 +102,14 @@ const styles = StyleSheet.create({
     listItemFavorite: {
         fontSize: 20,
         width: 50,
+    },
+    favIconIsFavoriteTrue: {
+        fontSize: 30,
+        color: 'gold'
+    },
+    favIconIsFavoriteFalse: {
+        fontSize: 30,
+        color: '#d3d3d3'
     }
 });
 

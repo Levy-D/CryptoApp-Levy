@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import APICoinMarketCapTop from './components/APICoinMarketCap';
 import Header from './components/Header';
@@ -40,7 +40,31 @@ const App = () => {
     }
   }
 
-  let newData = data.filter(item => favoriteIDs.includes(item.id));
+  useEffect(() => {
+    fetchAllItems();
+    console.log(data);
+    if (data != null) {
+      data.forEach(item => {
+        if (favoriteIDs.includes(item.id)) {
+          item.isFavorite = true;
+        }
+      })
+    };
+  }, []);
+
+
+  let newData: never[] | null = [];
+
+  if (data != null) {
+    newData = data.filter(item => favoriteIDs.includes(item.id));
+    data.forEach(item => {
+      if (favoriteIDs.includes(item.id)) {
+        item.isFavorite = true;
+      }
+    });
+  };
+
+  console.log(favoriteIDs)
 
   return (
     <View>
