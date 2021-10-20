@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import APICoinMarketCapTop from './components/APICoinMarketCap';
 import Header from './components/Header';
 import SubHeader from './components/SubHeader';
@@ -40,6 +40,7 @@ const App = () => {
     }
   }
 
+  //Set isFavorite to True on startup if coin is saved in AsyncStorage so it shows in the favorite list on startup
   useEffect(() => {
     fetchAllItems();
     console.log(data);
@@ -53,8 +54,8 @@ const App = () => {
   }, []);
 
 
-  let newData: never[] | null = [];
 
+  let newData: never[] | null = [];
   if (data != null) {
     newData = data.filter(item => favoriteIDs.includes(item.id));
     data.forEach(item => {
@@ -76,9 +77,5 @@ const App = () => {
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;

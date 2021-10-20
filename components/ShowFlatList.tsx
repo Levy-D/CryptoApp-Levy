@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, FlatList } from 'react-native';
 import ListItem from './ListItem';
 import IListItem from './Interfaces/IListItem'

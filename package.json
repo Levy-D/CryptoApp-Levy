@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-native-community/cli-platform-android": "^6.1.0",
     "@types/node": "^16.10.3",
     "@types/react-dom": "^17.0.9",
     "axios": "^0.22.0",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IListItem from './Interfaces/IListItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -57,7 +57,7 @@ const ListItem = ({ item, onFavorite }: IListItem) => {
         <TouchableOpacity style={styles.listItem}>
             <View style={styles.listItemView} >
                 <Text style={styles.listItemName}>{item.name}</Text>
-                <Text style={styles.listItemPrice}>$ {price}</Text>
+                <Text style={styles.listItemPrice}>${price}</Text>
                 <Text style={(percent_24h < 0) ? styles.listItemPercentNegative : styles.listItemPercentPositive}>{percent_24h}%</Text>
                 <Icon style={item.isFavorite ? styles.favIconIsFavoriteTrue : styles.favIconIsFavoriteFalse} name="star" onPress={() => btnPress()} ></Icon>
             </View>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     listItemName: {
         fontSize: 20,
-        width: 150
+        width: 130
     },
     listItemPrice: {
         fontSize: 20,
