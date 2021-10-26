@@ -15,16 +15,16 @@ export interface CmcCryptoCurrency {
     symbol: string;
     slug: string;
     num_market_pairs: number;
-    date_added: Date;
+    date_added: string;
     tags: string[];
     max_supply?: number;
     circulating_supply: number;
     total_supply: number;
-    platform: Platform;
+    platform?: Platform;
     cmc_rank: number;
-    last_updated: Date;
+    last_updated: string;
     quote: Quote;
-    isFavorite: boolean;
+    isFavorite?: boolean;
 }
 
 export interface Platform {
@@ -52,7 +52,7 @@ export interface USD {
     market_cap: number;
     market_cap_dominance: number;
     fully_diluted_market_cap: number;
-    last_updated: Date;
+    last_updated: string;
 }
 
 export default interface CMCResponse {
