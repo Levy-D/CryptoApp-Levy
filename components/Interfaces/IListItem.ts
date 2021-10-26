@@ -2,7 +2,6 @@
 import {CmcCryptoCurrency} from './ICoinMarketCapModel'
 
 export default interface Props {
-    item?: any
-    onFavorite?: any
-    data?: CmcCryptoCurrency[]
+    item: CmcCryptoCurrency
+    data: CmcCryptoCurrency[]
 }

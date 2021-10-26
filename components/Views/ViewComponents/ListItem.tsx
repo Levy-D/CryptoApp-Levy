@@ -6,8 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FavoriteIDsContext} from '../../Helper/Context';
 
 const ListItem = ({item}: IListItem) => {
-	const price : number = parseFloat(item.quote.USD.price);
-	const percent24h : number = parseFloat(item.quote.USD.percent_change_24h);
+	const {price} = item.quote.USD;
+	const percent24h : number = item.quote.USD.percent_change_24h;
 
 	const [favoriteValue, setFavorite] = useState<Number>(item.id);
 	const {setFavIDs} = useContext(FavoriteIDsContext);

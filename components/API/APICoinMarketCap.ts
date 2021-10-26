@@ -15,7 +15,7 @@ const apiCoinMarketCapTop = (n: number) => {
 		client
 			.get<CMCResponse>(`/v1/cryptocurrency/listings/latest?limit=${n}`)
 			.then((response: AxiosResponse<CMCResponse>) => {
-				console.log(response.data.data);
+				console.log('API data', response.data.data);
 				setData(response.data.data);
 			})
 			.catch((error):any => {
@@ -23,9 +23,9 @@ const apiCoinMarketCapTop = (n: number) => {
 			});
 	}, []);
 
-	if (!data) {
-		return undefined;
-	}
+	// If (!data) {
+	// 	return undefined;
+	// }
 
 	return data;
 };

@@ -4,29 +4,38 @@ import homePage from '../ViewPages/HomePage';
 import favoritesPage from '../ViewPages/FavoritesPage';
 import settingsPage from '../ViewPages/SettingsPage';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import dataAPI from '../../API/MockAPIData';
+// Import dataAPI from '../../API/MockAPIData';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 import {DataContext, FavoriteIDsContext, FavoritesContext} from '../../Helper/Context';
+import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
 
 export default function TabNavigation() {
 	const Tab = createBottomTabNavigator();
+	const dataAPI: CmcCryptoCurrency[] = apiCoinMarketCapTop(25);
 
-	const [data, setData] = useState<CmcCryptoCurrency[]>(dataAPI);
+	const [data, setData] = useState<CmcCryptoCurrency[]>([]);
 	const [favoritesData, setFavoritesData] = useState<CmcCryptoCurrency[]>([]);
 	const [favoriteIDs, setFavIDs] = useState<number[]>([]);
 
+	useEffect(() => {
+		setData(dataAPI);
+		console.log('called');
+	}, [dataAPI]);
+
 	// All favorites will have been marked as such on startup (yellow star)
 	useEffect(() => {
+		console.log('called2');
 		data.forEach(item => {
 			if (favoriteIDs.includes(item.id)) {
 				item.isFavorite = true;
 			}
 		});
 		setData(data);
-	});
+	}, [favoritesData]);
 
 	// Show favorites in favorites
 	useEffect(() => {
+		console.log('called3');
 		setFavoritesData(data.filter(item => favoriteIDs.includes(item.id)));
 	}, [favoriteIDs]);
 
