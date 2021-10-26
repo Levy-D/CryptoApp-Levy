@@ -5,7 +5,7 @@ import {IListItem} from '../../Interfaces/IViewComponents';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FavoriteIDsContext} from '../../Helper/Context';
 
-const ListItem = ({item}: IListItem) => {
+const ListItem = ({item, navigation}: IListItem) => {
 	const {price} = item.quote.USD;
 	const percent24h : number = item.quote.USD.percent_change_24h;
 
@@ -78,7 +78,7 @@ const ListItem = ({item}: IListItem) => {
 	}, []);
 
 	return (
-		<TouchableOpacity style={styles.listItem} >
+		<TouchableOpacity style={styles.listItem} onPress={() => navigation.navigate('Crypto Details')}>
 			<View style={styles.listItemView} >
 				<Text style={styles.listItemName}>{item.name}</Text>
 				<Text style={styles.listItemPrice}>{price < 1 ? `$${price.toPrecision(4)}` : `$${price.toFixed(2)}`}</Text>

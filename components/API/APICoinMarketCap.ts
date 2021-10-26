@@ -23,10 +23,6 @@ const apiCoinMarketCapTop = (n: number) => {
 			});
 	}, []);
 
-	// If (!data) {
-	// 	return undefined;
-	// }
-
 	return data;
 };
 

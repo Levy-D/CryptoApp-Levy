@@ -19,12 +19,10 @@ export default function TabNavigation() {
 
 	useEffect(() => {
 		setData(dataAPI);
-		console.log('called');
 	}, [dataAPI]);
 
 	// All favorites will have been marked as such on startup (yellow star)
 	useEffect(() => {
-		console.log('called2');
 		data.forEach(item => {
 			if (favoriteIDs.includes(item.id)) {
 				item.isFavorite = true;
@@ -35,7 +33,6 @@ export default function TabNavigation() {
 
 	// Show favorites in favorites
 	useEffect(() => {
-		console.log('called3');
 		setFavoritesData(data.filter(item => favoriteIDs.includes(item.id)));
 	}, [favoriteIDs]);
 
@@ -43,9 +40,10 @@ export default function TabNavigation() {
 		<DataContext.Provider value={{data, setData}}>
 			<FavoritesContext.Provider value={{favoritesData, setFavoritesData}}>
 				<FavoriteIDsContext.Provider value={{favoriteIDs, setFavIDs}}>
-					<Tab.Navigator>
+					<Tab.Navigator
+						screenOptions={{headerShown: false}}>
 						<Tab.Screen
-							name="Home"
+							name="HomeTab"
 							component={homePage}
 							options={{
 								tabBarIcon: ({size, color}) => (
@@ -54,7 +52,7 @@ export default function TabNavigation() {
 							}}
 						/>
 						<Tab.Screen
-							name="Favorites"
+							name="FavoritesTab"
 							component={favoritesPage}
 							options={{
 								tabBarIcon: ({size, color}) => (
@@ -63,7 +61,7 @@ export default function TabNavigation() {
 							}}
 						/>
 						<Tab.Screen
-							name="Settings"
+							name="SettingsTab"
 							component={settingsPage}
 							options={{
 								tabBarIcon: ({size, color}) => (

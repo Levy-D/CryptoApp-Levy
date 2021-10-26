@@ -6,8 +6,10 @@ export interface IHeader {
 
 export interface IListItem {
     item: CmcCryptoCurrency
+    navigation:
 }
 
 export interface IFlatList {
-    data: CmcCryptoCurrency[]
+    data: CmcCryptoCurrency[],
+    navigation:
 }

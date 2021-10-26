@@ -1,15 +1,16 @@
-import React, {useContext} from 'react';
-import {View} from 'react-native';
-import ShowFlatList from '../ViewComponents/ShowFlatList';
-import {DataContext} from '../../Helper/Context';
+import React from 'react';
+import ShowFlatListCryptos from '../ViewComponents/ShowFlatListCryptos';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import cryptoCurrencyPage from './CryptoCurrencyPage';
 
 const homePage = () => {
-	const {data} = useContext(DataContext);
+	const Stack = createNativeStackNavigator();
 
 	return (
-		<View>
-			<ShowFlatList data={data} />
-		</View>
+		<Stack.Navigator>
+			<Stack.Screen name="Home" component={ShowFlatListCryptos}/>
+			<Stack.Screen name="Crypto Details" component={cryptoCurrencyPage} />
+		</Stack.Navigator>
 	);
 };
 
