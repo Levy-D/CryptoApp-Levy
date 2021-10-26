@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IListItem from '../../Interfaces/IListItem';
+import {IListItem} from '../../Interfaces/IViewComponents';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FavoriteIDsContext} from '../../Helper/Context';
 
