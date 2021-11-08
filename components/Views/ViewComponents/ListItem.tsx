@@ -14,7 +14,7 @@ const ListItem = ({ item, navigation }: IListItem) => {
 	const { setDataItem } = useContext(DataItemContext);
 	const { setFavIDs } = useContext(FavoriteIDsContext);
 
-	const saveValue = async (storageId: string): Promise<void> => {
+	const saveIDtoAsyncStorage = async (storageId: string): Promise<void> => {
 		try {
 			const jsonValue: string = JSON.stringify(favoriteValue);
 			await AsyncStorage.setItem(storageId, jsonValue);
@@ -26,7 +26,7 @@ const ListItem = ({ item, navigation }: IListItem) => {
 		}
 	};
 
-	const deleteValue = async (storageId: string): Promise<void> => {
+	const deleteIDFromAsyncStorage = async (storageId: string): Promise<void> => {
 		try {
 			await AsyncStorage.removeItem(storageId);
 			fetchAllItemsFromAsyncStorage();
@@ -64,10 +64,10 @@ const ListItem = ({ item, navigation }: IListItem) => {
 			const storageId: string = 'ID_' + item.id;
 			if (!item.isFavorite) {
 				setFavorite(item.id);
-				saveValue(storageId);
+				saveIDtoAsyncStorage(storageId);
 				item.isFavorite = true;
 			} else if (item.isFavorite) {
-				deleteValue(storageId);
+				deleteIDFromAsyncStorage(storageId);
 				item.isFavorite = false;
 			}
 		} catch (e) {
@@ -102,13 +102,27 @@ const ListItem = ({ item, navigation }: IListItem) => {
 		}>
 			<View style={styles.listItemView} >
 				<Text style={styles.listItemName}>{item.name}</Text>
-				<Text style={styles.listItemPrice}>{price < 1 ? `$${price.toPrecision(4)}` : `$${price.toFixed(2)}`}</Text>
-				<Text style={(percent24h < 0) ? styles.listItemPercentNegative : styles.listItemPercentPositive}>{percent24h.toFixed(2)}%</Text>
-
-				<Icon style={item.isFavorite ? styles.favIconIsFavoriteTrue : styles.favIconIsFavoriteFalse} name="star" onPress={() => btnPress()} ></Icon>
+				<Text style={styles.listItemPrice}>
+					{price < 1 ? `$${price.toPrecision(4)}` : `$${price.toFixed(2)}`}
+				</Text>
+				<Text
+					style={
+						percent24h < 0
+							? styles.listItemPercentNegative
+							: styles.listItemPercentPositive
+					}>
+					{percent24h.toFixed(2)}%
+				</Text>
+				<Icon
+					style={
+						item.isFavorite
+							? styles.favIconIsFavoriteTrue
+							: styles.favIconIsFavoriteFalse
+					}
+					name="star"
+					onPress={() => btnPress()}></Icon>
 			</View>
 		</TouchableOpacity>
-
 	);
 };
 

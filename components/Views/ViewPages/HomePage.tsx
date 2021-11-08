@@ -8,7 +8,7 @@ const homePage = () => {
 
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Home" component={ShowFlatListCryptos}/>
+			<Stack.Screen name="Overview" component={ShowFlatListCryptos}/>
 			<Stack.Screen name="Crypto Details" component={cryptoCurrencyPage} />
 		</Stack.Navigator>
 	);

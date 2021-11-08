@@ -8,7 +8,7 @@ const favoritesPage = () => {
 
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Favorites" component={ShowFlatListFavorites}/>
+			<Stack.Screen name="Overview Favorites" component={ShowFlatListFavorites}/>
 			<Stack.Screen name="Crypto Details" component={cryptoCurrencyPage} />
 		</Stack.Navigator>
 	);
