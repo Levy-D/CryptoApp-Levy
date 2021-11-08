@@ -43,7 +43,7 @@ export default function TabNavigation() {
 					<Tab.Navigator
 						screenOptions={{headerShown: false}}>
 						<Tab.Screen
-							name="HomeTab"
+							name="Home"
 							component={homePage}
 							options={{
 								tabBarIcon: ({size, color}) => (
@@ -52,7 +52,7 @@ export default function TabNavigation() {
 							}}
 						/>
 						<Tab.Screen
-							name="FavoritesTab"
+							name="Favorites"
 							component={favoritesPage}
 							options={{
 								tabBarIcon: ({size, color}) => (
@@ -61,7 +61,7 @@ export default function TabNavigation() {
 							}}
 						/>
 						<Tab.Screen
-							name="SettingsTab"
+							name="Settings"
 							component={settingsPage}
 							options={{
 								tabBarIcon: ({size, color}) => (
