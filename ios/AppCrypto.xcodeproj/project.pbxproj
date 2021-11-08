@@ -12,22 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		4BC68089C5454D81B563B5E0 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA728D16AC84F5BA98807FA /* AntDesign.ttf */; };
-		500AFDD22A2A49EBB96056F8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DFB7071674F247A0AECCB893 /* Entypo.ttf */; };
-		1C295CA135AE45C781218358 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 88AC03B25350467CA79ABB29 /* EvilIcons.ttf */; };
-		DC65C9D8EB8F4E38B8F6A318 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6238D4D529A74232A8C168C8 /* Feather.ttf */; };
-		7E9CC932131D4DC28EEE556A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23567384012A4F91A9152141 /* FontAwesome.ttf */; };
-		400FF356C31A4668B1E271AB /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3F726DA8FD8417188E4402D /* FontAwesome5_Brands.ttf */; };
-		E3162FA832D048C99CD7F6A7 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58C746C4845D4C5EA3092CA4 /* FontAwesome5_Regular.ttf */; };
-		CCD573A872B5440F986D72DF /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886D0AA9C38E408695B928E9 /* FontAwesome5_Solid.ttf */; };
-		DF653ADE18774616B8262239 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C79BCCD413B4C13BB043491 /* Fontisto.ttf */; };
-		E634C3ECB9A14DAE9DAA0497 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6560A947AA884417BEAADB46 /* Foundation.ttf */; };
-		74CE316167954077B1AA971F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E876B38BDB044EA5A82832DC /* Ionicons.ttf */; };
-		4CA8859010D64DEABDA8ABB2 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0B901AE25CC442F817FAEEA /* MaterialCommunityIcons.ttf */; };
-		7B34D35DF99941DEA306125C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BB0B7A244D44C7DA04A325C /* MaterialIcons.ttf */; };
-		C550DE169F39488AB825D9B1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDD316BA72DD4FF4AA0372EB /* Octicons.ttf */; };
-		D1C3763AA38F4484A133FEA0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 343C290207AC491A9D7577C4 /* SimpleLineIcons.ttf */; };
-		954DC96483CB450E8D9F0CF3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40D27C9CB5674E7B97ACDA8A /* Zocial.ttf */; };
+		BB3E59865028A45086E65163 /* libPods-AppCrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34721A9948F38909A4E80C9 /* libPods-AppCrypto.a */; };
+		C4B9D5CD7AC3B37B75DAC85B /* libPods-AppCrypto-AppCryptoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DFF45D896B759DB86D7D999 /* libPods-AppCrypto-AppCryptoTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,24 +36,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppCrypto/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AppCrypto/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AppCrypto/main.m; sourceTree = "<group>"; };
+		1DFF45D896B759DB86D7D999 /* libPods-AppCrypto-AppCryptoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppCrypto-AppCryptoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E5A30DA2D027A8A330FE095 /* Pods-AppCrypto-AppCryptoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCrypto-AppCryptoTests.release.xcconfig"; path = "Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AppCrypto/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		843BEB632053104CC1BC30A3 /* Pods-AppCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCrypto.release.xcconfig"; path = "Target Support Files/Pods-AppCrypto/Pods-AppCrypto.release.xcconfig"; sourceTree = "<group>"; };
+		85C80A3F4C3FAD29CF3910F6 /* Pods-AppCrypto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCrypto.debug.xcconfig"; path = "Target Support Files/Pods-AppCrypto/Pods-AppCrypto.debug.xcconfig"; sourceTree = "<group>"; };
+		B34721A9948F38909A4E80C9 /* libPods-AppCrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppCrypto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD44CF281BC742F04F9E9F5C /* Pods-AppCrypto-AppCryptoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCrypto-AppCryptoTests.debug.xcconfig"; path = "Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		9EA728D16AC84F5BA98807FA /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		DFB7071674F247A0AECCB893 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		88AC03B25350467CA79ABB29 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6238D4D529A74232A8C168C8 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		23567384012A4F91A9152141 /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E3F726DA8FD8417188E4402D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		58C746C4845D4C5EA3092CA4 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		886D0AA9C38E408695B928E9 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8C79BCCD413B4C13BB043491 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6560A947AA884417BEAADB46 /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E876B38BDB044EA5A82832DC /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B0B901AE25CC442F817FAEEA /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7BB0B7A244D44C7DA04A325C /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EDD316BA72DD4FF4AA0372EB /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		343C290207AC491A9D7577C4 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		40D27C9CB5674E7B97ACDA8A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B9D5CD7AC3B37B75DAC85B /* libPods-AppCrypto-AppCryptoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB3E59865028A45086E65163 /* libPods-AppCrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,8 +100,28 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				B34721A9948F38909A4E80C9 /* libPods-AppCrypto.a */,
+				1DFF45D896B759DB86D7D999 /* libPods-AppCrypto-AppCryptoTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CCE1148C9FD5F7FD32FA9C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				85C80A3F4C3FAD29CF3910F6 /* Pods-AppCrypto.debug.xcconfig */,
+				843BEB632053104CC1BC30A3 /* Pods-AppCrypto.release.xcconfig */,
+				DD44CF281BC742F04F9E9F5C /* Pods-AppCrypto-AppCryptoTests.debug.xcconfig */,
+				7E5A30DA2D027A8A330FE095 /* Pods-AppCrypto-AppCryptoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4D121C04F23C4F12B17AEC14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -142,6 +140,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				4D121C04F23C4F12B17AEC14 /* Resources */,
+				3CCE1148C9FD5F7FD32FA9C4 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -157,30 +156,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4D121C04F23C4F12B17AEC14 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				9EA728D16AC84F5BA98807FA /* AntDesign.ttf */,
-				DFB7071674F247A0AECCB893 /* Entypo.ttf */,
-				88AC03B25350467CA79ABB29 /* EvilIcons.ttf */,
-				6238D4D529A74232A8C168C8 /* Feather.ttf */,
-				23567384012A4F91A9152141 /* FontAwesome.ttf */,
-				E3F726DA8FD8417188E4402D /* FontAwesome5_Brands.ttf */,
-				58C746C4845D4C5EA3092CA4 /* FontAwesome5_Regular.ttf */,
-				886D0AA9C38E408695B928E9 /* FontAwesome5_Solid.ttf */,
-				8C79BCCD413B4C13BB043491 /* Fontisto.ttf */,
-				6560A947AA884417BEAADB46 /* Foundation.ttf */,
-				E876B38BDB044EA5A82832DC /* Ionicons.ttf */,
-				B0B901AE25CC442F817FAEEA /* MaterialCommunityIcons.ttf */,
-				7BB0B7A244D44C7DA04A325C /* MaterialIcons.ttf */,
-				EDD316BA72DD4FF4AA0372EB /* Octicons.ttf */,
-				343C290207AC491A9D7577C4 /* SimpleLineIcons.ttf */,
-				40D27C9CB5674E7B97ACDA8A /* Zocial.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,9 +163,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AppCryptoTests" */;
 			buildPhases = (
+				997D58B962F9F14BACF05C2F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				55EC4C07EDD78240A9FEC59E /* [CP] Embed Pods Frameworks */,
+				C9E15DC8FEDC6A07693E026F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,11 +184,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AppCrypto" */;
 			buildPhases = (
+				CCF59B6BE8EAF52270199211 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				1E743D7DD80FCC854A1C6BEE /* [CP] Embed Pods Frameworks */,
+				5BB5BB92AFBCFAC8FC7C2000 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,7 +208,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -271,22 +252,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				4BC68089C5454D81B563B5E0 /* AntDesign.ttf in Resources */,
-				500AFDD22A2A49EBB96056F8 /* Entypo.ttf in Resources */,
-				1C295CA135AE45C781218358 /* EvilIcons.ttf in Resources */,
-				DC65C9D8EB8F4E38B8F6A318 /* Feather.ttf in Resources */,
-				7E9CC932131D4DC28EEE556A /* FontAwesome.ttf in Resources */,
-				400FF356C31A4668B1E271AB /* FontAwesome5_Brands.ttf in Resources */,
-				E3162FA832D048C99CD7F6A7 /* FontAwesome5_Regular.ttf in Resources */,
-				CCD573A872B5440F986D72DF /* FontAwesome5_Solid.ttf in Resources */,
-				DF653ADE18774616B8262239 /* Fontisto.ttf in Resources */,
-				E634C3ECB9A14DAE9DAA0497 /* Foundation.ttf in Resources */,
-				74CE316167954077B1AA971F /* Ionicons.ttf in Resources */,
-				4CA8859010D64DEABDA8ABB2 /* MaterialCommunityIcons.ttf in Resources */,
-				7B34D35DF99941DEA306125C /* MaterialIcons.ttf in Resources */,
-				C550DE169F39488AB825D9B1 /* Octicons.ttf in Resources */,
-				D1C3763AA38F4484A133FEA0 /* SimpleLineIcons.ttf in Resources */,
-				954DC96483CB450E8D9F0CF3 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +271,118 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		1E743D7DD80FCC854A1C6BEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55EC4C07EDD78240A9FEC59E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BB5BB92AFBCFAC8FC7C2000 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCrypto/Pods-AppCrypto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		997D58B962F9F14BACF05C2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppCrypto-AppCryptoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9E15DC8FEDC6A07693E026F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppCrypto-AppCryptoTests/Pods-AppCrypto-AppCryptoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCF59B6BE8EAF52270199211 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppCrypto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -359,14 +436,16 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD44CF281BC742F04F9E9F5C /* Pods-AppCrypto-AppCryptoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AppCryptoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,11 +464,13 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E5A30DA2D027A8A330FE095 /* Pods-AppCrypto-AppCryptoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = AppCryptoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,6 +489,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85C80A3F4C3FAD29CF3910F6 /* Pods-AppCrypto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -433,6 +515,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 843BEB632053104CC1BC30A3 /* Pods-AppCrypto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -487,6 +570,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -502,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -552,6 +636,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -560,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
