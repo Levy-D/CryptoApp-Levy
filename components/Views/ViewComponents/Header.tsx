@@ -1,11 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import {IHeader} from '../../Interfaces/IViewComponents';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Header = ({title}: IHeader) => (
 	<View style={styles.header} >
-		<Text style={styles.text}><Icon name="bitcoin" style={styles.text}></Icon> {title} <Icon name="bitcoin" style={styles.text} ></Icon></Text>
+		<Text style={styles.text}>{title}</Text>
 	</View>
 );
 
