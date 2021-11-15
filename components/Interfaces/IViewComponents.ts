@@ -1,4 +1,5 @@
 import {CmcCryptoCurrency} from './ICoinMarketCapModel';
+import {CryptoDetailsScreenNavigationProp} from '../Helper/NavigationTypeCheck';
 
 export interface IHeader {
     title: string
@@ -6,10 +7,11 @@ export interface IHeader {
 
 export interface IListItem {
     item: CmcCryptoCurrency
-    navigation:
+    navigation: CryptoDetailsScreenNavigationProp
 }
 
 export interface IFlatList {
     data: CmcCryptoCurrency[],
-    navigation:
+    navigation: CryptoDetailsScreenNavigationProp
 }
+
