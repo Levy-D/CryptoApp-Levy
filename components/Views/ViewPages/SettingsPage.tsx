@@ -1,5 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Text, View, StyleSheet, Switch} from 'react-native';
+import {saveBooleanToAsyncStorage} from '../../Helper/AsyncStorage';
 import {
 	IsEnabledHighlightChainlinkContext,
 	IsEnabledUseEURContext,
@@ -16,6 +17,14 @@ const settingsPage = () => {
 	const toggleSwitchUseEUR = () => {
 		setIsEnabledUseEUR(previousState => !previousState);
 	};
+
+	useEffect(() => {
+		saveBooleanToAsyncStorage('ValutaEUR', isEnabledUseEUR);
+	}, [isEnabledUseEUR]);
+
+	useEffect(() => {
+		saveBooleanToAsyncStorage('ChainlinkHighlighted', isEnabledHighlightChainlink);
+	}, [isEnabledHighlightChainlink]);
 
 	return (
 		<View style={styles.view}>

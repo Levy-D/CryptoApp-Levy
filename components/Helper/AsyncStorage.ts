@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const deleteIDFromAsyncStorage = async (storageId: string): Promise<void> => {
 	try {
 		await AsyncStorage.removeItem(storageId);
+		// Await AsyncStorage.removeItem('ValutaEUR');
 		console.log(storageId, 'deleted');
 		console.log('Remaining Keys', await AsyncStorage.getAllKeys());
 	} catch (e) {
@@ -15,6 +16,27 @@ export const saveIDtoAsyncStorage = async (storageId: string, value: number): Pr
 		await AsyncStorage.setItem(storageId, value.toString());
 		console.log(storageId, 'added');
 		console.log('All Keys', await AsyncStorage.getAllKeys());
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const saveBooleanToAsyncStorage = async (storageId: string, value: boolean): Promise<void> => {
+	try {
+		await AsyncStorage.setItem(storageId, value.toString());
+		console.log(storageId, 'added');
+		console.log('All Keys', await AsyncStorage.getAllKeys());
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const getItemFromAsyncStorage = async (storageId: string): Promise<string | undefined> => {
+	try {
+		const value = await AsyncStorage.getItem(storageId);
+		if (value !== null) {
+			return value;
+		}
 	} catch (e) {
 		console.log(e);
 	}

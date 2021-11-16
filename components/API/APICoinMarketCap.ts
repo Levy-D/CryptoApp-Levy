@@ -10,7 +10,7 @@ const apiCoinMarketCapTop = (n: number, valuta: string) => {
 	return client
 		.get<CMCResponse>(`/v1/cryptocurrency/listings/latest?limit=${n}&convert=${valuta}`)
 		.then((response: AxiosResponse<CMCResponse>) => {
-			console.log('API data', response.data.data);
+			console.log('API data', valuta, response.data.data);
 			return response.data.data;
 		})
 		.catch((error): any => {

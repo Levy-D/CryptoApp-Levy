@@ -6,16 +6,17 @@ import SubHeader from '../ViewComponents/SubHeader';
 
 const cryptoCurrencyPage = () => {
 	const {dataItem} = useContext(DataItemContext);
+	console.log(dataItem);
+	const {isEnabledUseEUR} = useContext(IsEnabledUseEURContext);
+	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
 
-	if (dataItem === null) {
+	if (dataItem === null || dataItem?.quote[valuta] === undefined) {
 		return (<View style={styles.volumeContainer}>
-			<Text>Crypto not Found</Text>
+			<Text>Data not Found</Text>
 		</View>
 		);
 	}
 
-	const {isEnabledUseEUR} = useContext(IsEnabledUseEURContext);
-	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
 	const valutaSymbol = isEnabledUseEUR ? '€' : '$';
 	const maxSupply: String
 		= dataItem.max_supply === undefined || dataItem.max_supply === null

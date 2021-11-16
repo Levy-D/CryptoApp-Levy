@@ -15,6 +15,7 @@ import {
 	IsEnabledUseEURContext,
 } from '../../Helper/Context';
 import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
+import {getItemFromAsyncStorage} from '../../Helper/AsyncStorage';
 
 export default function TabNavigation() {
 	const Tab = createBottomTabNavigator();
@@ -24,19 +25,39 @@ export default function TabNavigation() {
 	const [dataItem, setDataItem] = useState<CmcCryptoCurrency | null>(null);
 	const [isEnabledHighlightChainlink, setIsEnabledHighlightChainlink]
 		= useState<boolean>(false);
-	const [isEnabledUseEUR, setIsEnabledUseEUR] = useState<boolean>(false);
-	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
+	const [isEnabledUseEUR, setIsEnabledUseEUR] = useState<boolean>();
 
-	// Get API data
 	useEffect(() => {
-		const getData = async () => {
-			const data: CmcCryptoCurrency[] = await apiCoinMarketCapTop(25, valuta);
-			if (data !== undefined) {
-				setData(data);
+		// Gets boolean from async storage to determine is an option ist true or false
+		const getValueFromValutaEUR = async () => {
+			const valueString: string = await getItemFromAsyncStorage('ValutaEUR').then();
+			if (valueString !== undefined) {
+				const valueBoolean: boolean = JSON.parse(valueString);
+				setIsEnabledUseEUR(valueBoolean);
 			}
 		};
 
-		getData();
+		// Gets boolean from async storage to determine if chainlink is highlighted
+		const getValueFromChainlinkHighlighted = async () => {
+			const valueString: string = await getItemFromAsyncStorage('ChainlinkHighlighted').then();
+			if (valueString !== undefined) {
+				const valueBoolean: boolean = JSON.parse(valueString);
+				setIsEnabledHighlightChainlink(valueBoolean);
+			}
+		};
+
+		getValueFromValutaEUR();
+		getValueFromChainlinkHighlighted();
+	}, []);
+
+	// Get API data
+	useEffect(() => {
+		const getData = async (valuta: string) => {
+			const dataAPI: CmcCryptoCurrency[] = await apiCoinMarketCapTop(25, valuta);
+			setData(dataAPI);
+		};
+
+		getData((isEnabledUseEUR ? 'EUR' : 'USD'));
 	}, [isEnabledUseEUR]);
 
 	// All favorites will have been marked as such on startup with a yellow star
