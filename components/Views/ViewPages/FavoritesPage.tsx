@@ -5,7 +5,7 @@ import cryptoCurrencyPage from './CryptoCurrencyPage';
 import LogoTitle from '../ViewComponents/LogoTitle';
 import {RootStackParamList} from '../../Helper/NavigationTypeCheck';
 
-const favoritesPage = () => {
+const FavoritesPage = () => {
 	const Stack = createNativeStackNavigator<RootStackParamList>();
 
 	return (
@@ -16,4 +16,4 @@ const favoritesPage = () => {
 	);
 };
 
-export default favoritesPage;
+export default FavoritesPage;

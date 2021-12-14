@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {FlatList} from 'react-native';
 import ListItem from './ListItem';
 import {IFlatList} from '../../Interfaces/IViewComponents';
-import {FavoritesContext} from '../../Helper/Context';
+import {selectFavoritesData} from '../../Redux/Slices/Favorites';
+import {useSelector} from 'react-redux';
 
 const List = ({navigation}: IFlatList) => {
-	const {favoritesData} = useContext(FavoritesContext);
+	const favoritesData = useSelector(selectFavoritesData);
 
 	return (
 		<FlatList

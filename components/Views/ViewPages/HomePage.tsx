@@ -5,7 +5,7 @@ import cryptoCurrencyPage from './CryptoCurrencyPage';
 import LogoTitle from '../ViewComponents/LogoTitle';
 import {RootStackParamList} from '../../Helper/NavigationTypeCheck';
 
-const homePage = () => {
+const HomePage = () => {
 	const Stack = createNativeStackNavigator<RootStackParamList>();
 
 	return (
@@ -16,5 +16,5 @@ const homePage = () => {
 	);
 };
 
-export default homePage;
+export default HomePage;
 

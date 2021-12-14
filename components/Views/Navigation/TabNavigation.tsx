@@ -1,126 +1,100 @@
-
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import homePage from '../ViewPages/HomePage';
-import favoritesPage from '../ViewPages/FavoritesPage';
-import settingsPage from '../ViewPages/SettingsPage';
+import HomePage from '../ViewPages/HomePage';
+import FavoritesPage from '../ViewPages/FavoritesPage';
+import SettingsPage from '../ViewPages/SettingsPage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
-import {
-	DataContext,
-	FavoriteIDsContext,
-	FavoritesContext,
-	DataItemContext,
-	IsEnabledHighlightChainlinkContext,
-	IsEnabledUseEURContext,
-} from '../../Helper/Context';
 import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
-import {getItemFromAsyncStorage} from '../../Helper/AsyncStorage';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectStateDisplayEUR} from '../../Redux/Slices/UserSettings';
+import {selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, setCryptoData, setCryptoDataEUR, setCryptoDataUSD} from '../../Redux/Slices/CryptoData';
+import {selectFavoritesData, setFavoritesData} from '../../Redux/Slices/Favorites';
 
 export default function TabNavigation() {
 	const Tab = createBottomTabNavigator();
-	const [data, setData] = useState<CmcCryptoCurrency[]>([]);
-	const [favoritesData, setFavoritesData] = useState<CmcCryptoCurrency[]>([]);
-	const [favoriteIDs, setFavIDs] = useState<number[]>([]);
-	const [dataItem, setDataItem] = useState<CmcCryptoCurrency | null>(null);
-	const [isEnabledHighlightChainlink, setIsEnabledHighlightChainlink]
-		= useState<boolean>(false);
-	const [isEnabledUseEUR, setIsEnabledUseEUR] = useState<boolean>();
-
-	useEffect(() => {
-		// Gets boolean from async storage to determine is an option ist true or false
-		const getValueFromValutaEUR = async () => {
-			const valueString: string = await getItemFromAsyncStorage('ValutaEUR').then();
-			if (valueString !== undefined) {
-				const valueBoolean: boolean = JSON.parse(valueString);
-				setIsEnabledUseEUR(valueBoolean);
-			}
-		};
-
-		// Gets boolean from async storage to determine if chainlink is highlighted
-		const getValueFromChainlinkHighlighted = async () => {
-			const valueString: string = await getItemFromAsyncStorage('ChainlinkHighlighted').then();
-			if (valueString !== undefined) {
-				const valueBoolean: boolean = JSON.parse(valueString);
-				setIsEnabledHighlightChainlink(valueBoolean);
-			}
-		};
-
-		getValueFromValutaEUR();
-		getValueFromChainlinkHighlighted();
-	}, []);
+	const dispatch = useDispatch();
+	const stateDisplayEUR = useSelector(selectStateDisplayEUR);
+	const data = useSelector(selectCryptoData);
+	const favorites = useSelector(selectFavoritesData);
+	const eur = useSelector(selectCryptoDataEUR);
+	const usd = useSelector(selectCryptoDataUSD);
 
 	// Get API data
 	useEffect(() => {
-		const getData = async (valuta: string) => {
-			const dataAPI: CmcCryptoCurrency[] = await apiCoinMarketCapTop(25, valuta);
-			setData(dataAPI);
+		const getData = async (amount: number, valuta: string) => {
+			const dataAPI: CmcCryptoCurrency[] = await apiCoinMarketCapTop(amount, valuta);
+			dataAPI.forEach(item => {
+				if (favorites.length > 0) {
+					favorites.forEach(favorite => {
+						if (item.id === favorite.id) {
+							item.isFavorite = true;
+						} else {
+							item.isFavorite = false;
+						}
+					});
+				}
+
+				if (valuta === 'USD') {
+					dispatch(setCryptoDataUSD(dataAPI));
+				} else {
+					dispatch(setCryptoDataEUR(dataAPI));
+				}
+			});
 		};
 
-		getData((isEnabledUseEUR ? 'EUR' : 'USD'));
-	}, [isEnabledUseEUR]);
+		const amountOfFetchedCryptos = 25;
+		getData(amountOfFetchedCryptos, 'USD');
+		getData(amountOfFetchedCryptos, 'EUR');
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-	// All favorites will have been marked as such on startup with a yellow star
 	useEffect(() => {
-		data.forEach(item => {
-			if (favoriteIDs.includes(item.id)) {
-				item.isFavorite = true;
-			}
-		});
-		setData(data);
-	}, [favoritesData, data]);
+		if (stateDisplayEUR) {
+			dispatch(setCryptoData(eur));
+		} else {
+			dispatch(setCryptoData(usd));
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [stateDisplayEUR]);
 
 	// Show favorites in favorites
 	useEffect(() => {
-		setFavoritesData(data.filter(item => favoriteIDs.includes(item.id)));
-	}, [favoriteIDs, data]);
+		if (data !== undefined) {
+			dispatch(setFavoritesData(data.filter(item => item.isFavorite === true)));
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [data]);
 
 	return (
-		<DataContext.Provider value={{data, setData}}>
-			<FavoritesContext.Provider value={{favoritesData, setFavoritesData}}>
-				<FavoriteIDsContext.Provider value={{favoriteIDs, setFavIDs}}>
-					<DataItemContext.Provider value={{dataItem, setDataItem}}>
-						<IsEnabledHighlightChainlinkContext.Provider
-							value={{
-								isEnabledHighlightChainlink,
-								setIsEnabledHighlightChainlink,
-							}}>
-							<IsEnabledUseEURContext.Provider
-								value={{isEnabledUseEUR, setIsEnabledUseEUR}}>
-								<Tab.Navigator screenOptions={{headerShown: false}}>
-									<Tab.Screen
-										name="Home"
-										component={homePage}
-										options={{
-											tabBarIcon: ({size, color}) => (
-												<Icon name="home" size={size} color={color} />
-											),
-										}}
-									/>
-									<Tab.Screen
-										name="Favorites"
-										component={favoritesPage}
-										options={{
-											tabBarIcon: ({size, color}) => (
-												<Icon name="star" size={size} color={color} />
-											),
-										}}
-									/>
-									<Tab.Screen
-										name="Settings"
-										component={settingsPage}
-										options={{
-											tabBarIcon: ({size, color}) => (
-												<Icon name="gear" size={size} color={color} />
-											),
-										}}
-									/>
-								</Tab.Navigator>
-							</IsEnabledUseEURContext.Provider>
-						</IsEnabledHighlightChainlinkContext.Provider>
-					</DataItemContext.Provider>
-				</FavoriteIDsContext.Provider>
-			</FavoritesContext.Provider>
-		</DataContext.Provider>
+		<Tab.Navigator screenOptions={{headerShown: false}}>
+			<Tab.Screen
+				name="Home"
+				component={HomePage}
+				options={{
+					tabBarIcon: ({size, color}) => (
+						<Icon name="home" size={size} color={color} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="Favorites"
+				component={FavoritesPage}
+				options={{
+					tabBarIcon: ({size, color}) => (
+						<Icon name="star" size={size} color={color} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="Settings"
+				component={SettingsPage}
+				options={{
+					tabBarIcon: ({size, color}) => (
+						<Icon name="gear" size={size} color={color} />
+					),
+				}}
+			/>
+		</Tab.Navigator>
 	);
 }
