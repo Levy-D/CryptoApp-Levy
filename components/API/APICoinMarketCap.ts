@@ -8,13 +8,13 @@ const apiCoinMarketCapTop = (n: number, valuta: string) => {
 	});
 
 	return client
-		.get<CMCResponse>(`/v1/cryptocurrency/listings/latest?limit=${n}&convert=${valuta}`)
+		.get<CMCResponse>(`/v1/cryptocurrency/listings/latest?limit=${n}&convert=${valuta}&sort=cmc_rank`)
 		.then((response: AxiosResponse<CMCResponse>) => {
 			console.log('API data', valuta, response.data.data);
 			return response.data.data;
 		})
 		.catch((error): any => {
-			console.log(error);
+			console.log('API CoinMarketCap', error);
 		});
 };
 

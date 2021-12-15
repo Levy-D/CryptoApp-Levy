@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 import {RootState} from '../store';
 
@@ -7,6 +8,7 @@ interface CryptoDataState{
 	cryptoData: CmcCryptoCurrency[],
 	cryptoDataEUR: CmcCryptoCurrency[],
 	cryptoDataUSD: CmcCryptoCurrency[],
+	favoritesData: CmcCryptoCurrency[],
 	cryptoDataItem: CmcCryptoCurrency
 }
 
@@ -14,6 +16,7 @@ const initialState: CryptoDataState = {
 	cryptoData: [],
 	cryptoDataUSD: [],
 	cryptoDataEUR: [],
+	favoritesData: [],
 	cryptoDataItem: {
 		id: 0,
 		name: '',
@@ -61,6 +64,9 @@ const CryptoData = createSlice({
 		setCryptoDataEUR: (state, action: PayloadAction<CmcCryptoCurrency[]>) => {
 			state.cryptoDataEUR = action.payload;
 		},
+		setFavoritesData: (state, action: PayloadAction<CmcCryptoCurrency[]>) => {
+			state.favoritesData = action.payload;
+		},
 		setCryptoDataItem: (state, action: PayloadAction<CmcCryptoCurrency>) => {
 			state.cryptoDataItem = action.payload;
 		},
@@ -80,7 +86,47 @@ const CryptoData = createSlice({
 				}
 			});
 		},
+	},
+	extraReducers: builder => {
+		builder.addCase(getDatafromCoinMarketCap.fulfilled, (state, action) => {
+			if (action.payload[1] === 'USD') {
+				state.cryptoDataUSD = action.payload[0];
+			} else {
+				state.cryptoDataEUR = action.payload[0];
+			}
+		});
 	}});
+
+const getDatafromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string}>(
+	'coinMarketCap/fetchTopCryptoCurrencies',
+	async params => {
+		const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(params.amount, params.valuta);
+		return [cryptoCurrencies, params.valuta];
+	},
+);
+
+// // Thunk function
+// export const getDatafromCoinMarketCap = (amount: number, valuta: string) : ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+// 	const state = getState();
+// 	const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(amount, valuta);
+// 	cryptoCurrencies.forEach(item => {
+// 		if (state.cryptoData.favoritesData.length > 0) {
+// 			state.cryptoData.favoritesData.forEach((favorite: CmcCryptoCurrency) => {
+// 				if (item.id === favorite.id) {
+// 					item.isFavorite = true;
+// 				} else {
+// 					item.isFavorite = false;
+// 				}
+// 			});
+// 		}
+
+// 		if (valuta === 'USD') {
+// 			dispatch(setCryptoDataUSD(cryptoCurrencies));
+// 		} else {
+// 			dispatch(setCryptoDataEUR(cryptoCurrencies));
+// 		}
+// 	});
+// };
 
 export const {setCryptoData, setCryptoDataUSD, setCryptoDataEUR, setCryptoDataItem, setIsFavoriteToTrue, setIsFavoriteToFalse} = CryptoData.actions;
 export const selectCryptoData = (state: RootState) => state.cryptoData.cryptoData;

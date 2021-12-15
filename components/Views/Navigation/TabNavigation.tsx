@@ -8,8 +8,9 @@ import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectStateDisplayEUR} from '../../Redux/Slices/UserSettings';
-import {selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, setCryptoData, setCryptoDataEUR, setCryptoDataUSD} from '../../Redux/Slices/CryptoData';
+import {getDatafromCoinMarketCap, selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, setCryptoData, setCryptoDataEUR, setCryptoDataUSD} from '../../Redux/Slices/CryptoData';
 import {selectFavoritesData, setFavoritesData} from '../../Redux/Slices/Favorites';
+import {store} from '../../Redux/store';
 
 export default function TabNavigation() {
 	const Tab = createBottomTabNavigator();
@@ -21,33 +22,35 @@ export default function TabNavigation() {
 	const usd = useSelector(selectCryptoDataUSD);
 
 	// Get API data
-	useEffect(() => {
-		const getData = async (amount: number, valuta: string) => {
-			const dataAPI: CmcCryptoCurrency[] = await apiCoinMarketCapTop(amount, valuta);
-			dataAPI.forEach(item => {
-				if (favorites.length > 0) {
-					favorites.forEach(favorite => {
-						if (item.id === favorite.id) {
-							item.isFavorite = true;
-						} else {
-							item.isFavorite = false;
-						}
-					});
-				}
+	// useEffect(() => {
+	// 	const getData = async (amount: number, valuta: string) => {
+	// 		const dataAPI: CmcCryptoCurrency[] = await apiCoinMarketCapTop(amount, valuta);
+	// 		dataAPI.forEach(item => {
+	// 			if (favorites.length > 0) {
+	// 				favorites.forEach(favorite => {
+	// 					if (item.id === favorite.id) {
+	// 						item.isFavorite = true;
+	// 					} else {
+	// 						item.isFavorite = false;
+	// 					}
+	// 				});
+	// 			}
 
-				if (valuta === 'USD') {
-					dispatch(setCryptoDataUSD(dataAPI));
-				} else {
-					dispatch(setCryptoDataEUR(dataAPI));
-				}
-			});
-		};
+	// 			if (valuta === 'USD') {
+	// 				dispatch(setCryptoDataUSD(dataAPI));
+	// 			} else {
+	// 				dispatch(setCryptoDataEUR(dataAPI));
+	// 			}
+	// 		});
+	// 	};
 
-		const amountOfFetchedCryptos = 25;
-		getData(amountOfFetchedCryptos, 'USD');
-		getData(amountOfFetchedCryptos, 'EUR');
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// 	const amountOfFetchedCryptos = 25;
+	// 	getData(amountOfFetchedCryptos, 'USD');
+	// 	getData(amountOfFetchedCryptos, 'EUR');
+	// // eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
+	const valuta = stateDisplayEUR ? 'EUR' : 'USD';
+	dispatch(getDatafromCoinMarketCap(25, valuta));
 
 	useEffect(() => {
 		if (stateDisplayEUR) {
