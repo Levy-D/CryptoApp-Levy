@@ -47,12 +47,27 @@ const initialState: CryptoDataState = {
 				fully_diluted_market_cap: 0,
 				last_updated: '',
 			},
+			EUR: {
+				price: 0,
+				volume_24h: 0,
+				volume_change_24h: 0,
+				percent_change_1h: 0,
+				percent_change_24h: 0,
+				percent_change_7d: 0,
+				percent_change_30d: 0,
+				percent_change_60d: 0,
+				percent_change_90d: 0,
+				market_cap: 0,
+				market_cap_dominance: 0,
+				fully_diluted_market_cap: 0,
+				last_updated: '',
+			},
 		},
 	},
 };
 
-const CryptoData = createSlice({
-	name: 'CryptoData',
+const cryptoData = createSlice({
+	name: 'cryptoData',
 	initialState,
 	reducers: {
 		setCryptoData: (state, action: PayloadAction<CmcCryptoCurrency[]>) => {
@@ -88,49 +103,52 @@ const CryptoData = createSlice({
 		},
 	},
 	extraReducers: builder => {
-		builder.addCase(getDatafromCoinMarketCap.fulfilled, (state, action) => {
+		builder.addCase(getDataFromCoinMarketCap.fulfilled, (state, action: PayloadAction<[CmcCryptoCurrency[], string]>) => {
 			if (action.payload[1] === 'USD') {
-				state.cryptoDataUSD = action.payload[0];
+				state.cryptoDataUSD = setFavorites(state.favoritesData, action.payload[0]);
 			} else {
-				state.cryptoDataEUR = action.payload[0];
+				state.cryptoDataEUR = setFavorites(state.favoritesData, action.payload[0]);
 			}
 		});
-	}});
+	},
+});
 
-const getDatafromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string}>(
-	'coinMarketCap/fetchTopCryptoCurrencies',
+const setFavorites = (favorites: CmcCryptoCurrency[], cryptoCurrencies: CmcCryptoCurrency[]) => {
+	console.log('state2', favorites);
+	cryptoCurrencies.forEach(crypto => {
+		if (favorites.length > 0) {
+			favorites.forEach(favorite => {
+				if (crypto.id === favorite.id) {
+					crypto.isFavorite = true;
+				} else {
+					crypto.isFavorite = false;
+				}
+			});
+		}
+
+		crypto.isFavorite = false;
+	});
+
+	return cryptoCurrencies;
+};
+
+const addIsFavoriteProperty = (cryptoCurrencies: CmcCryptoCurrency[]) => cryptoCurrencies.forEach(crypto => {
+	crypto.isFavorite = false;
+});
+
+export const getDataFromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string}>(
+	'coinMarketCap/fetchTopCryptoCurrenciesStatus',
 	async params => {
 		const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(params.amount, params.valuta);
+		addIsFavoriteProperty(cryptoCurrencies);
 		return [cryptoCurrencies, params.valuta];
 	},
 );
 
-// // Thunk function
-// export const getDatafromCoinMarketCap = (amount: number, valuta: string) : ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
-// 	const state = getState();
-// 	const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(amount, valuta);
-// 	cryptoCurrencies.forEach(item => {
-// 		if (state.cryptoData.favoritesData.length > 0) {
-// 			state.cryptoData.favoritesData.forEach((favorite: CmcCryptoCurrency) => {
-// 				if (item.id === favorite.id) {
-// 					item.isFavorite = true;
-// 				} else {
-// 					item.isFavorite = false;
-// 				}
-// 			});
-// 		}
-
-// 		if (valuta === 'USD') {
-// 			dispatch(setCryptoDataUSD(cryptoCurrencies));
-// 		} else {
-// 			dispatch(setCryptoDataEUR(cryptoCurrencies));
-// 		}
-// 	});
-// };
-
-export const {setCryptoData, setCryptoDataUSD, setCryptoDataEUR, setCryptoDataItem, setIsFavoriteToTrue, setIsFavoriteToFalse} = CryptoData.actions;
+export const {setCryptoData, setCryptoDataUSD, setCryptoDataEUR, setCryptoDataItem, setIsFavoriteToTrue, setIsFavoriteToFalse, setFavoritesData} = cryptoData.actions;
 export const selectCryptoData = (state: RootState) => state.cryptoData.cryptoData;
 export const selectCryptoDataUSD = (state: RootState) => state.cryptoData.cryptoDataUSD;
 export const selectCryptoDataEUR = (state: RootState) => state.cryptoData.cryptoDataEUR;
 export const selectCryptoDataItem = (state: RootState) => state.cryptoData.cryptoDataItem;
-export default CryptoData.reducer;
+export default cryptoData.reducer;
+

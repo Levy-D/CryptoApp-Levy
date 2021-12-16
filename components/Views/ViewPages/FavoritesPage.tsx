@@ -1,7 +1,7 @@
 import React from 'react';
 import ShowFlatListFavorites from '../ViewComponents/ShowFlatListFavorites';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import cryptoCurrencyPage from './CryptoCurrencyPage';
+import CryptoCurrencyPage from './CryptoCurrencyPage';
 import LogoTitle from '../ViewComponents/LogoTitle';
 import {RootStackParamList} from '../../Helper/NavigationTypeCheck';
 
@@ -11,7 +11,7 @@ const FavoritesPage = () => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="Overview Favorites" component={ShowFlatListFavorites}/>
-			<Stack.Screen name="Crypto Details" component={cryptoCurrencyPage} options={{headerTitle: () => <LogoTitle/>}}/>
+			<Stack.Screen name="Crypto Details" component={CryptoCurrencyPage} options={{headerTitle: () => <LogoTitle/>}}/>
 		</Stack.Navigator>
 	);
 };

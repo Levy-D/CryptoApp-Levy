@@ -2,11 +2,11 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import ListItem from './ListItem';
 import {IFlatList} from '../../Interfaces/IViewComponents';
-import {selectFavoritesData} from '../../Redux/Slices/Favorites';
+import {selectCryptoData} from '../../Redux/Slices/CryptoData';
 import {useSelector} from 'react-redux';
 
 const List = ({navigation}: IFlatList) => {
-	const favoritesData = useSelector(selectFavoritesData);
+	const favoritesData = useSelector(selectCryptoData).filter(x => x.isFavorite === true);
 
 	return (
 		<FlatList

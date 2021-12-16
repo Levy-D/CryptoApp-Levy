@@ -1,22 +1,15 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import {IsEnabledUseEURContext} from '../../Helper/Context';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 import {selectCryptoDataItem} from '../../Redux/Slices/CryptoData';
+import {selectStateDisplayEUR} from '../../Redux/Slices/UserSettings';
 import SubHeader from '../ViewComponents/SubHeader';
 
-const cryptoCurrencyPage = () => {
+const CryptoCurrencyPage = () => {
 	const cryptoDataItem = useSelector(selectCryptoDataItem);
-	const {isEnabledUseEUR} = useContext(IsEnabledUseEURContext);
+	const isEnabledUseEUR = useSelector(selectStateDisplayEUR);
 	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
-
-	if (cryptoDataItem === null || cryptoDataItem.quote[valuta] === undefined) {
-		return (<View style={styles.volumeContainer}>
-			<Text>Data not Found</Text>
-		</View>
-		);
-	}
 
 	const valutaSymbol = isEnabledUseEUR ? '€' : '$';
 	const maxSupply: string
@@ -33,9 +26,7 @@ const cryptoCurrencyPage = () => {
 	const [active90d, setActive90d] = useState<boolean>(false);
 	const {price} = cryptoDataItem.quote[valuta]!;
 
-	useEffect(() => {
-		setPercent(percent);
-	}, [percent]);
+	useEffect(() =>	setPercent(percent), [percent]);
 
 	function btnPress(percentChange: string, cryptocurrency: CmcCryptoCurrency) {
 		setActive1h(false);
@@ -196,10 +187,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 	},
-	logo: {
-		width: 64,
-		height: 64,
-	},
 	volumeContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
@@ -257,4 +244,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default cryptoCurrencyPage;
+export default CryptoCurrencyPage;

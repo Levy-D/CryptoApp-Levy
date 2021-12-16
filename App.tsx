@@ -7,10 +7,11 @@ import {PersistGate} from 'redux-persist/lib/integration/react';
 
 const App = () => (
 	<Provider store={store} >
-		<PersistGate loading={null} persistor={persistor} />
-		<NavigationContainer>
-			<TabNavigation />
-		</NavigationContainer>
+		<PersistGate loading={null} persistor={persistor}>
+			<NavigationContainer>
+				<TabNavigation />
+			</NavigationContainer>
+		</PersistGate>
 	</Provider>
 );
 

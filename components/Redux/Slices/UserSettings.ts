@@ -11,7 +11,7 @@ const initialState: UserSettingsState = {
 	displayEUR: false,
 };
 
-const UserSettings = createSlice({
+const userSettings = createSlice({
 	name: 'UserSettings',
 	initialState,
 	reducers: {
@@ -24,9 +24,9 @@ const UserSettings = createSlice({
 	},
 });
 
-export const {toggleHighlightChainlink, toggleDisplayEUR} = UserSettings.actions;
+export const {toggleHighlightChainlink, toggleDisplayEUR} = userSettings.actions;
 
 export const selectStateHighlightChainlink = (state: RootState) => state.userSettings.highlightChainlink;
 export const selectStateDisplayEUR = (state: RootState) => state.userSettings.displayEUR;
 
-export default UserSettings.reducer;
+export default userSettings.reducer;
