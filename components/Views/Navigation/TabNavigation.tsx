@@ -8,7 +8,8 @@ import SettingsPage from '../ViewPages/SettingsPage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectStateDisplayEUR} from '../../Redux/Slices/UserSettings';
-import {getDataFromCoinMarketCap, selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, setCryptoData, setFavoritesData} from '../../Redux/Slices/CryptoData';
+import {getDataFromCoinMarketCap, selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, selectFavorites, setCryptoData, setFavoritesData} from '../../Redux/Slices/CryptoData';
+import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 
 const TabNavigation = () => {
 	const Tab = createBottomTabNavigator();
@@ -21,10 +22,12 @@ const TabNavigation = () => {
 		dispatch(setFavoritesData(cryptoData.filter(x => x.isFavorite === true)));
 	};
 
-	const fetchDataFromCoinMarketCap = () => {
+	const favs = useSelector(selectFavorites);
+
+	const fetchDataFromCoinMarketCap = (favorites: CmcCryptoCurrency[]) => {
 		const amount: number = 25;
 		const valuta = stateDisplayEUR ? 'EUR' : 'USD';
-		dispatch(getDataFromCoinMarketCap({amount, valuta}));
+		dispatch(getDataFromCoinMarketCap({amount, valuta, favorites}));
 	};
 
 	const switchValuta = () => {
@@ -35,7 +38,7 @@ const TabNavigation = () => {
 		}
 	};
 
-	useEffect(fetchDataFromCoinMarketCap, [stateDisplayEUR]);
+	useEffect(() => fetchDataFromCoinMarketCap(favs), [stateDisplayEUR]);
 	useEffect(switchValuta, [stateDisplayEUR, eur, usd]);
 	useEffect(setFavorites, [cryptoData]);
 

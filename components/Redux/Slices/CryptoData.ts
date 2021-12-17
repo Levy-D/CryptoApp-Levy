@@ -105,42 +105,18 @@ const cryptoData = createSlice({
 	extraReducers: builder => {
 		builder.addCase(getDataFromCoinMarketCap.fulfilled, (state, action: PayloadAction<[CmcCryptoCurrency[], string]>) => {
 			if (action.payload[1] === 'USD') {
-				state.cryptoDataUSD = setFavorites(state.favoritesData, action.payload[0]);
+				state.cryptoDataUSD = action.payload[0];
 			} else {
-				state.cryptoDataEUR = setFavorites(state.favoritesData, action.payload[0]);
+				state.cryptoDataEUR = action.payload[0];
 			}
 		});
 	},
 });
 
-const setFavorites = (favorites: CmcCryptoCurrency[], cryptoCurrencies: CmcCryptoCurrency[]) => {
-	console.log('state2', favorites);
-	cryptoCurrencies.forEach(crypto => {
-		if (favorites.length > 0) {
-			favorites.forEach(favorite => {
-				if (crypto.id === favorite.id) {
-					crypto.isFavorite = true;
-				} else {
-					crypto.isFavorite = false;
-				}
-			});
-		}
-
-		crypto.isFavorite = false;
-	});
-
-	return cryptoCurrencies;
-};
-
-const addIsFavoriteProperty = (cryptoCurrencies: CmcCryptoCurrency[]) => cryptoCurrencies.forEach(crypto => {
-	crypto.isFavorite = false;
-});
-
-export const getDataFromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string}>(
+export const getDataFromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string, favorites: CmcCryptoCurrency[]}>(
 	'coinMarketCap/fetchTopCryptoCurrenciesStatus',
 	async params => {
-		const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(params.amount, params.valuta);
-		addIsFavoriteProperty(cryptoCurrencies);
+		const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(params.amount, params.valuta, params.favorites);
 		return [cryptoCurrencies, params.valuta];
 	},
 );
@@ -150,5 +126,6 @@ export const selectCryptoData = (state: RootState) => state.cryptoData.cryptoDat
 export const selectCryptoDataUSD = (state: RootState) => state.cryptoData.cryptoDataUSD;
 export const selectCryptoDataEUR = (state: RootState) => state.cryptoData.cryptoDataEUR;
 export const selectCryptoDataItem = (state: RootState) => state.cryptoData.cryptoDataItem;
+export const selectFavorites = (state: RootState) => state.cryptoData.favoritesData;
 export default cryptoData.reducer;
 
