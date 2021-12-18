@@ -21,7 +21,8 @@
     "@types/react-dom": "^17.0.9",
     "axios": "^0.22.0",
     "react": "17.0.2",
-    "react-native": "0.66.0-rc.1",
+    "react-native": "0.66.4",
+    "react-native-bootsplash": "^4.0.2",
     "react-native-restart": "0.0.22",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@bam.tech/react-native-make": "^3.0.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.27",
