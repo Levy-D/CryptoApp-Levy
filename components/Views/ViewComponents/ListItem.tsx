@@ -1,73 +1,45 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {IListItem} from '../../Interfaces/IViewComponents';
-import {deleteIDFromAsyncStorage, saveIDtoAsyncStorage, fetchAllItemsFromAsyncStorage} from '../../Helper/AsyncStorage';
-import {
-	FavoriteIDsContext,
-	DataItemContext,
-	IsEnabledHighlightChainlinkContext,
-	IsEnabledUseEURContext,
-} from '../../Helper/Context';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectStateDisplayEUR, selectStateHighlightChainlink} from '../../Redux/Slices/UserSettings';
+import {setCryptoDataItem, setIsFavoriteToFalse, setIsFavoriteToTrue} from '../../Redux/Slices/CryptoData';
 
 const ListItem = ({item, navigation}: IListItem) => {
-	const {isEnabledUseEUR} = useContext(IsEnabledUseEURContext);
-	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
-	const valutaSymbol: string = isEnabledUseEUR ? '€' : '$';
+	const dispatch = useDispatch();
+	const stateDisplayEUR = useSelector(selectStateDisplayEUR);
+	const stateHighlightChainlink = useSelector(selectStateHighlightChainlink);
+	const valuta = stateDisplayEUR ? 'EUR' : 'USD';
+	const valutaSymbol: string = stateDisplayEUR ? '€' : '$';
 	let price: number = 0;
 	let percent24h: number = 0;
-	if (item.quote[valuta] !== undefined) {
-		price = item.quote[valuta].price;
-		percent24h = item.quote[valuta].percent_change_24h;
+	if (item.quote[valuta] !== null && item.quote[valuta] !== undefined) {
+		price = item.quote[valuta]!.price;
+		percent24h = item.quote[valuta]!.percent_change_24h;
 	}
-
-	const [favoriteValue, setFavorite] = useState<number>(item.id);
-	const {setDataItem} = useContext(DataItemContext);
-	const {setFavIDs} = useContext(FavoriteIDsContext);
-	const {isEnabledHighlightChainlink} = useContext(
-		IsEnabledHighlightChainlinkContext,
-	);
-
-	// Get favorite IDs from Async Storage
-	const getIds = async () => {
-		const a: number[] | undefined = await fetchAllItemsFromAsyncStorage();
-		if (a !== undefined) {
-			setFavIDs(a);
-		}
-	};
 
 	// Toggle favorites
 	const btnPress = (): void => {
 		try {
-			const storageId: string = 'ID_' + item.id;
 			if (!item.isFavorite) {
-				setFavorite(item.id);
-				saveIDtoAsyncStorage(storageId, favoriteValue);
-				getIds();
-				item.isFavorite = true;
+				dispatch(setIsFavoriteToTrue(item));
 			} else if (item.isFavorite) {
-				deleteIDFromAsyncStorage(storageId);
-				getIds();
-				item.isFavorite = false;
+				dispatch(setIsFavoriteToFalse(item));
 			}
 		} catch (e) {
 			console.log(e);
 		}
 	};
 
-	// On load set favorites
-	useEffect(() => {
-		getIds();
-	}, []);
-
 	// Chainlink formatting
-	if (item.id === 1975 && isEnabledHighlightChainlink) {
+	if (item.id === 1975 && stateHighlightChainlink) {
 		return (
 			<TouchableOpacity
 				style={styles.listItemChainlink}
 				onPress={() => {
+					dispatch(setCryptoDataItem(item));
 					navigation.navigate('Crypto Details');
-					setDataItem(item);
 				}}>
 				<View style={styles.listItemView}>
 					<Text style={styles.listItemNameChainlink}>{item.name}</Text>
@@ -103,8 +75,8 @@ const ListItem = ({item, navigation}: IListItem) => {
 		<TouchableOpacity
 			style={styles.listItem}
 			onPress={() => {
+				dispatch(setCryptoDataItem(item));
 				navigation.navigate('Crypto Details');
-				setDataItem(item);
 			}}>
 			<View style={styles.listItemView}>
 				<Text style={styles.listItemName}>{item.name}</Text>

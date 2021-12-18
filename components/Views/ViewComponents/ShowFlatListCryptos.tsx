@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {FlatList} from 'react-native';
 import ListItem from './ListItem';
 import {IFlatList} from '../../Interfaces/IViewComponents';
-import {DataContext} from '../../Helper/Context';
+import {selectCryptoData} from '../../Redux/Slices/CryptoData';
+import {useSelector} from 'react-redux';
 
 const List = ({navigation}: IFlatList) => {
-	const {data} = useContext(DataContext);
+	const data = useSelector(selectCryptoData);
 
 	return (
 		<FlatList

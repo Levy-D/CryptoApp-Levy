@@ -1,39 +1,47 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const deleteIDFromAsyncStorage = async (storageId: string): Promise<void> => {
+export const deleteFromAsyncStorage = async (
+	storageId: string,
+): Promise<void> => {
 	try {
 		await AsyncStorage.removeItem(storageId);
-		// Await AsyncStorage.removeItem('ValutaEUR');
-		console.log(storageId, 'deleted');
 		console.log('Remaining Keys', await AsyncStorage.getAllKeys());
 	} catch (e) {
 		console.log(e);
 	}
 };
 
-export const saveIDtoAsyncStorage = async (storageId: string, value: number): Promise<void> => {
+export const saveObjectToAsyncStorage = async (
+	storageId: string,
+	value: any,
+): Promise<void> => {
 	try {
-		await AsyncStorage.setItem(storageId, value.toString());
-		console.log(storageId, 'added');
-		console.log('All Keys', await AsyncStorage.getAllKeys());
+		const jsonValue = JSON.stringify(value);
+		await AsyncStorage.setItem(storageId, jsonValue);
+		console.log('Remaining Keys', await AsyncStorage.getAllKeys());
 	} catch (e) {
 		console.log(e);
 	}
 };
 
-export const saveBooleanToAsyncStorage = async (storageId: string, value: boolean): Promise<void> => {
+export const saveValueToAsyncStorage = async (
+	storageId: string,
+	value: any,
+): Promise<void> => {
 	try {
 		await AsyncStorage.setItem(storageId, value.toString());
-		console.log(storageId, 'added');
-		console.log('All Keys', await AsyncStorage.getAllKeys());
+		console.log('Remaining Keys', await AsyncStorage.getAllKeys());
 	} catch (e) {
 		console.log(e);
 	}
 };
 
-export const getItemFromAsyncStorage = async (storageId: string): Promise<string | undefined> => {
+export const getValueFromAsyncStorage = async (
+	storageId: string,
+): Promise<string | undefined> => {
 	try {
 		const value = await AsyncStorage.getItem(storageId);
+		console.log('Remaining Keys', await AsyncStorage.getAllKeys());
 		if (value !== null) {
 			return value;
 		}
@@ -42,24 +50,13 @@ export const getItemFromAsyncStorage = async (storageId: string): Promise<string
 	}
 };
 
-export async function fetchAllItemsFromAsyncStorage(): Promise<number[] | undefined> {
+export const getObjectFromAsyncStorage = async (
+	storageId: string,
+): Promise<any | undefined> => {
 	try {
-		return AsyncStorage.getAllKeys().then(async keys => {
-			if (keys.length !== 0) {
-				return AsyncStorage.multiGet(keys).then(key => {
-					const ids: number[] = [];
-					key.forEach(data => {
-						if (data[1] !== null) {
-							ids.push(parseInt(data[1].toString(), 10));
-						}
-					});
-					return ids;
-				});
-			}
-
-			return [];
-		});
-	} catch (error) {
-		console.log(error);
+		const jsonValue = await AsyncStorage.getItem(storageId);
+		return jsonValue === null ? null : JSON.parse(jsonValue);
+	} catch (e) {
+		console.log(e);
 	}
-}
+};

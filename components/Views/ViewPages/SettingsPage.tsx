@@ -1,30 +1,20 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
 import {Text, View, StyleSheet, Switch} from 'react-native';
-import {saveBooleanToAsyncStorage} from '../../Helper/AsyncStorage';
-import {
-	IsEnabledHighlightChainlinkContext,
-	IsEnabledUseEURContext,
-} from '../../Helper/Context';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectStateDisplayEUR, selectStateHighlightChainlink, toggleDisplayEUR, toggleHighlightChainlink} from '../../Redux/Slices/UserSettings';
 
-const settingsPage = () => {
-	const {isEnabledHighlightChainlink, setIsEnabledHighlightChainlink}
-		= useContext(IsEnabledHighlightChainlinkContext);
-	const toggleSwitchHighlightChainlink = () =>
-		setIsEnabledHighlightChainlink(previousState => !previousState);
-	const {isEnabledUseEUR, setIsEnabledUseEUR} = useContext(
-		IsEnabledUseEURContext,
-	);
-	const toggleSwitchUseEUR = () => {
-		setIsEnabledUseEUR(previousState => !previousState);
+const SettingsPage = () => {
+	const dispatch = useDispatch();
+	const isEnabledHighlightChainlink = useSelector(selectStateHighlightChainlink);
+	const isEnabledUseEUR = useSelector(selectStateDisplayEUR);
+
+	const toggleSwitchHighlightChainlink = () => {
+		dispatch(toggleHighlightChainlink());
 	};
 
-	useEffect(() => {
-		saveBooleanToAsyncStorage('ValutaEUR', isEnabledUseEUR);
-	}, [isEnabledUseEUR]);
-
-	useEffect(() => {
-		saveBooleanToAsyncStorage('ChainlinkHighlighted', isEnabledHighlightChainlink);
-	}, [isEnabledHighlightChainlink]);
+	const toggleSwitchUseEUR = () => {
+		dispatch(toggleDisplayEUR());
+	};
 
 	return (
 		<View style={styles.view}>
@@ -50,7 +40,7 @@ const settingsPage = () => {
 	);
 };
 
-export default settingsPage;
+export default SettingsPage;
 
 const styles = StyleSheet.create({
 	view: {
