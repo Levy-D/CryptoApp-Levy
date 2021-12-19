@@ -10,8 +10,15 @@ const FavoritesPage = () => {
 
 	return (
 		<Stack.Navigator>
-			<Stack.Screen name="Overview Favorites" component={ShowFlatListFavorites}/>
-			<Stack.Screen name="Crypto Details" component={CryptoCurrencyPage} options={{headerTitle: () => <LogoTitle/>}}/>
+			<Stack.Screen
+				name="Overview Favorites"
+				component={ShowFlatListFavorites}
+			/>
+			<Stack.Screen
+				name="Crypto Details"
+				component={CryptoCurrencyPage}
+				options={{headerTitle: () => <LogoTitle />}}
+			/>
 		</Stack.Navigator>
 	);
 };

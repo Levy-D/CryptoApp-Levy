@@ -12,12 +12,15 @@ const CryptoCurrencyPage = () => {
 	const valuta = isEnabledUseEUR ? 'EUR' : 'USD';
 
 	const valutaSymbol = isEnabledUseEUR ? '€' : '$';
-	const maxSupply: string
-		= cryptoDataItem.max_supply === undefined || cryptoDataItem.max_supply === null
+	const maxSupply: string =
+		cryptoDataItem.max_supply === undefined ||
+		cryptoDataItem.max_supply === null
 			? 'N/A'
 			: cryptoDataItem.max_supply.toFixed(2);
 	const [percent, setPercent] = useState<number>(
-		Number.parseFloat(cryptoDataItem.quote[valuta]!.percent_change_24h.toFixed(2)),
+		Number.parseFloat(
+			cryptoDataItem.quote[valuta]!.percent_change_24h.toFixed(2),
+		),
 	);
 	const [active1h, setActive1h] = useState<boolean>(false);
 	const [active24h, setActive24h] = useState<boolean>(true);
@@ -26,7 +29,7 @@ const CryptoCurrencyPage = () => {
 	const [active90d, setActive90d] = useState<boolean>(false);
 	const {price} = cryptoDataItem.quote[valuta]!;
 
-	useEffect(() =>	setPercent(percent), [percent]);
+	useEffect(() => setPercent(percent), [percent]);
 
 	function btnPress(percentChange: string, cryptocurrency: CmcCryptoCurrency) {
 		setActive1h(false);
@@ -95,9 +98,11 @@ const CryptoCurrencyPage = () => {
 		<View>
 			<View style={styles.volumeContainer}>
 				<SubHeader title={cryptoDataItem.name}></SubHeader>
-				<Text style={styles.price}>{price < 1
-					? `${valutaSymbol}${price.toPrecision(4)}`
-					: `${valutaSymbol}${price.toFixed(2)}`}</Text>
+				<Text style={styles.price}>
+					{price < 1
+						? `${valutaSymbol}${price.toPrecision(4)}`
+						: `${valutaSymbol}${price.toFixed(2)}`}
+				</Text>
 				<Text
 					style={
 						percent < 0
@@ -142,7 +147,9 @@ const CryptoCurrencyPage = () => {
 				</View>
 				<View style={styles.textContainerFirst}>
 					<Text>Market Dominance</Text>
-					<Text>{cryptoDataItem.quote[valuta]!.market_cap_dominance.toFixed(2)}%</Text>
+					<Text>
+						{cryptoDataItem.quote[valuta]!.market_cap_dominance.toFixed(2)}%
+					</Text>
 				</View>
 				<View style={styles.textContainer}>
 					<Text>Market Cap</Text>

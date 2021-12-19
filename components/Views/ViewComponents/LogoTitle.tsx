@@ -10,7 +10,8 @@ const LogoTitle = () => {
 		return (
 			<View style={styles.title}>
 				<Text style={styles.text}>Crypto Not Found</Text>
-			</View>);
+			</View>
+		);
 	}
 
 	return (
@@ -19,7 +20,8 @@ const LogoTitle = () => {
 				style={styles.logo}
 				source={{
 					uri: `https://s2.coinmarketcap.com/static/img/coins/64x64/${dataItem.id}.png`,
-				}} />
+				}}
+			/>
 			<Text style={styles.text}>{dataItem.symbol}</Text>
 		</View>
 	);

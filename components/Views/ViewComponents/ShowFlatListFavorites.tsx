@@ -6,13 +6,16 @@ import {selectCryptoData} from '../../Redux/Slices/CryptoData';
 import {useSelector} from 'react-redux';
 
 const List = ({navigation}: IFlatList) => {
-	const favoritesData = useSelector(selectCryptoData).filter(x => x.isFavorite === true);
+	const favoritesData = useSelector(selectCryptoData).filter(
+		x => x.isFavorite === true,
+	);
 
 	return (
 		<FlatList
 			data={favoritesData}
 			renderItem={({item}) => <ListItem item={item} navigation={navigation} />}
-		/>);
+		/>
+	);
 };
 
 export default List;

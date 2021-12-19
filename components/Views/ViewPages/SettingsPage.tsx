@@ -1,11 +1,18 @@
 import React from 'react';
 import {Text, View, StyleSheet, Switch} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectStateDisplayEUR, selectStateHighlightChainlink, toggleDisplayEUR, toggleHighlightChainlink} from '../../Redux/Slices/UserSettings';
+import {
+	selectStateDisplayEUR,
+	selectStateHighlightChainlink,
+	toggleDisplayEUR,
+	toggleHighlightChainlink,
+} from '../../Redux/Slices/UserSettings';
 
 const SettingsPage = () => {
 	const dispatch = useDispatch();
-	const isEnabledHighlightChainlink = useSelector(selectStateHighlightChainlink);
+	const isEnabledHighlightChainlink = useSelector(
+		selectStateHighlightChainlink,
+	);
 	const isEnabledUseEUR = useSelector(selectStateDisplayEUR);
 
 	const toggleSwitchHighlightChainlink = () => {

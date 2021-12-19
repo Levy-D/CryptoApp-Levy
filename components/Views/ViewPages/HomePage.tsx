@@ -11,10 +11,13 @@ const HomePage = () => {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen name="Overview" component={ShowFlatListCryptos} />
-			<Stack.Screen name="Crypto Details" component={cryptoCurrencyPage} options={{headerTitle: () => <LogoTitle/>}}/>
+			<Stack.Screen
+				name="Crypto Details"
+				component={cryptoCurrencyPage}
+				options={{headerTitle: () => <LogoTitle />}}
+			/>
 		</Stack.Navigator>
 	);
 };
 
 export default HomePage;
-

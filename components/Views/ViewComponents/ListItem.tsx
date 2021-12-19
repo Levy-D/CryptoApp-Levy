@@ -3,8 +3,15 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {IListItem} from '../../Interfaces/IViewComponents';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectStateDisplayEUR, selectStateHighlightChainlink} from '../../Redux/Slices/UserSettings';
-import {setCryptoDataItem, setIsFavoriteToFalse, setIsFavoriteToTrue} from '../../Redux/Slices/CryptoData';
+import {
+	selectStateDisplayEUR,
+	selectStateHighlightChainlink,
+} from '../../Redux/Slices/UserSettings';
+import {
+	setCryptoDataItem,
+	setIsFavoriteToFalse,
+	setIsFavoriteToTrue,
+} from '../../Redux/Slices/CryptoData';
 
 const ListItem = ({item, navigation}: IListItem) => {
 	const dispatch = useDispatch();

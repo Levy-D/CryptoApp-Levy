@@ -8,7 +8,15 @@ import SettingsPage from '../ViewPages/SettingsPage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectStateDisplayEUR} from '../../Redux/Slices/UserSettings';
-import {getDataFromCoinMarketCap, selectCryptoData, selectCryptoDataEUR, selectCryptoDataUSD, selectFavorites, setCryptoData, setFavoritesData} from '../../Redux/Slices/CryptoData';
+import {
+	getDataFromCoinMarketCap,
+	selectCryptoData,
+	selectCryptoDataEUR,
+	selectCryptoDataUSD,
+	selectFavorites,
+	setCryptoData,
+	setFavoritesData,
+} from '../../Redux/Slices/CryptoData';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 
 const TabNavigation = () => {
@@ -18,6 +26,7 @@ const TabNavigation = () => {
 	const stateDisplayEUR = useSelector(selectStateDisplayEUR);
 	const eur = useSelector(selectCryptoDataEUR);
 	const usd = useSelector(selectCryptoDataUSD);
+
 	const setFavorites = () => {
 		dispatch(setFavoritesData(cryptoData.filter(x => x.isFavorite === true)));
 	};

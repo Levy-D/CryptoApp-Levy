@@ -3,7 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {IHeader} from '../../Interfaces/IViewComponents';
 
 const SubHeader = ({title}: IHeader) => (
-	<View style={styles.subHeader} >
+	<View style={styles.subHeader}>
 		<Text style={styles.text}>{title}</Text>
 	</View>
 );

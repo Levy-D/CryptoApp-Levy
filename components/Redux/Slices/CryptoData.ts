@@ -4,12 +4,12 @@ import apiCoinMarketCapTop from '../../API/APICoinMarketCap';
 import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 import {RootState} from '../store';
 
-interface CryptoDataState{
-	cryptoData: CmcCryptoCurrency[],
-	cryptoDataEUR: CmcCryptoCurrency[],
-	cryptoDataUSD: CmcCryptoCurrency[],
-	favoritesData: CmcCryptoCurrency[],
-	cryptoDataItem: CmcCryptoCurrency
+interface CryptoDataState {
+	cryptoData: CmcCryptoCurrency[];
+	cryptoDataEUR: CmcCryptoCurrency[];
+	cryptoDataUSD: CmcCryptoCurrency[];
+	favoritesData: CmcCryptoCurrency[];
+	cryptoDataItem: CmcCryptoCurrency;
 }
 
 const initialState: CryptoDataState = {
@@ -103,29 +103,48 @@ const cryptoData = createSlice({
 		},
 	},
 	extraReducers: builder => {
-		builder.addCase(getDataFromCoinMarketCap.fulfilled, (state, action: PayloadAction<[CmcCryptoCurrency[], string]>) => {
-			if (action.payload[1] === 'USD') {
-				state.cryptoDataUSD = action.payload[0];
-			} else {
-				state.cryptoDataEUR = action.payload[0];
-			}
-		});
+		builder.addCase(
+			getDataFromCoinMarketCap.fulfilled,
+			(state, action: PayloadAction<[CmcCryptoCurrency[], string]>) => {
+				if (action.payload[1] === 'USD') {
+					state.cryptoDataUSD = action.payload[0];
+				} else {
+					state.cryptoDataEUR = action.payload[0];
+				}
+			},
+		);
 	},
 });
 
-export const getDataFromCoinMarketCap = createAsyncThunk<[CmcCryptoCurrency[], string], {amount: number, valuta: string, favorites: CmcCryptoCurrency[]}>(
-	'coinMarketCap/fetchTopCryptoCurrenciesStatus',
-	async params => {
-		const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(params.amount, params.valuta, params.favorites);
-		return [cryptoCurrencies, params.valuta];
-	},
-);
+export const getDataFromCoinMarketCap = createAsyncThunk<
+	[CmcCryptoCurrency[], string],
+	{amount: number; valuta: string; favorites: CmcCryptoCurrency[]}
+>('coinMarketCap/fetchTopCryptoCurrenciesStatus', async params => {
+	const cryptoCurrencies: CmcCryptoCurrency[] = await apiCoinMarketCapTop(
+		params.amount,
+		params.valuta,
+		params.favorites,
+	);
+	return [cryptoCurrencies, params.valuta];
+});
 
-export const {setCryptoData, setCryptoDataUSD, setCryptoDataEUR, setCryptoDataItem, setIsFavoriteToTrue, setIsFavoriteToFalse, setFavoritesData} = cryptoData.actions;
-export const selectCryptoData = (state: RootState) => state.cryptoData.cryptoData;
-export const selectCryptoDataUSD = (state: RootState) => state.cryptoData.cryptoDataUSD;
-export const selectCryptoDataEUR = (state: RootState) => state.cryptoData.cryptoDataEUR;
-export const selectCryptoDataItem = (state: RootState) => state.cryptoData.cryptoDataItem;
-export const selectFavorites = (state: RootState) => state.cryptoData.favoritesData;
+export const {
+	setCryptoData,
+	setCryptoDataUSD,
+	setCryptoDataEUR,
+	setCryptoDataItem,
+	setIsFavoriteToTrue,
+	setIsFavoriteToFalse,
+	setFavoritesData,
+} = cryptoData.actions;
+export const selectCryptoData = (state: RootState) =>
+	state.cryptoData.cryptoData;
+export const selectCryptoDataUSD = (state: RootState) =>
+	state.cryptoData.cryptoDataUSD;
+export const selectCryptoDataEUR = (state: RootState) =>
+	state.cryptoData.cryptoDataEUR;
+export const selectCryptoDataItem = (state: RootState) =>
+	state.cryptoData.cryptoDataItem;
+export const selectFavorites = (state: RootState) =>
+	state.cryptoData.favoritesData;
 export default cryptoData.reducer;
-

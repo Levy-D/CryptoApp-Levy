@@ -12,7 +12,8 @@ const List = ({navigation}: IFlatList) => {
 		<FlatList
 			data={data}
 			renderItem={({item}) => <ListItem item={item} navigation={navigation} />}
-		/>);
+		/>
+	);
 };
 
 export default List;

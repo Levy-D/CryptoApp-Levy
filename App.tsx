@@ -6,14 +6,9 @@ import {store, persistor} from './components/Redux/store';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import RNBootSplash from 'react-native-bootsplash';
 
-const fakeApiCallWithoutBadNetwork = (ms: number) =>
-	new Promise(resolve => setTimeout(resolve, ms));
-
 const App = () => {
 	useEffect(() => {
-		const init = async () => {
-			await fakeApiCallWithoutBadNetwork(3000);
-		};
+		const init = async () => {};
 
 		init().finally(async () => {
 			await RNBootSplash.hide({fade: true});
@@ -22,7 +17,7 @@ const App = () => {
 	}, []);
 
 	return (
-		<Provider store={store} >
+		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<NavigationContainer>
 					<TabNavigation />

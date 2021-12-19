@@ -1,4 +1,3 @@
-/* eslint-disable semi */
 export interface Status {
 	timestamp: string;
 	error_code: number;
