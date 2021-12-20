@@ -27,7 +27,7 @@ const ListItem = ({item, navigation}: IListItem) => {
 	}
 
 	// Toggle favorites
-	const btnPress = (): void => {
+	const toggleFavorite = (): void => {
 		try {
 			if (!item.isFavorite) {
 				dispatch(setIsFavoriteToTrue(item));
@@ -65,13 +65,14 @@ const ListItem = ({item, navigation}: IListItem) => {
 					</Text>
 
 					<Icon
+						testID="icon-star"
 						style={
 							item.isFavorite
 								? styles.favIconIsFavoriteTrue
 								: styles.favIconIsFavoriteFalse
 						}
 						name="star"
-						onPress={() => btnPress()}></Icon>
+						onPress={() => toggleFavorite()}></Icon>
 				</View>
 			</TouchableOpacity>
 		);
@@ -101,13 +102,14 @@ const ListItem = ({item, navigation}: IListItem) => {
 					{percent24h.toFixed(2)}%
 				</Text>
 				<Icon
+					testID="icon-star"
 					style={
 						item.isFavorite
 							? styles.favIconIsFavoriteTrue
 							: styles.favIconIsFavoriteFalse
 					}
 					name="star"
-					onPress={() => btnPress()}></Icon>
+					onPress={() => toggleFavorite()}></Icon>
 			</View>
 		</TouchableOpacity>
 	);
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
 	},
 	favIconIsFavoriteFalse: {
 		fontSize: 24,
-		color: '#d3d3d3',
+		color: '#d3d3d3', // Gray
 	},
 });
 

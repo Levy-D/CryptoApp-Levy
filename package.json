@@ -1,12 +1,13 @@
 {
-  "name": "AppCrypto",
+  "name": "crypto-app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --watch-all",
+    "test-silent": "jest --watch-all --silent",
     "lint": "eslint .",
     "windows": "react-native run-windows"
   },
@@ -37,6 +38,8 @@
     "@babel/runtime": "^7.12.5",
     "@bam.tech/react-native-make": "^3.0.3",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^9.0.0",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.27",
     "@types/react-native": "^0.65.5",

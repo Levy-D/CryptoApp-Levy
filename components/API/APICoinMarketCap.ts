@@ -1,7 +1,12 @@
 import axios, {AxiosInstance, AxiosResponse} from 'axios';
-import CMCResponse, {CmcCryptoCurrency} from '../Interfaces/ICoinMarketCapModel';
+import CMCResponse, {
+	CmcCryptoCurrency,
+} from '../Interfaces/ICoinMarketCapModel';
 
-const addIsFavoriteProperty = (favorites: CmcCryptoCurrency[], cryptoCurrencies: CmcCryptoCurrency[]) => {
+export const addIsFavoriteProperty = (
+	favorites: CmcCryptoCurrency[],
+	cryptoCurrencies: CmcCryptoCurrency[],
+) => {
 	cryptoCurrencies.forEach(crypto => {
 		crypto.isFavorite = false;
 		if (favorites.length > 0) {
@@ -15,14 +20,20 @@ const addIsFavoriteProperty = (favorites: CmcCryptoCurrency[], cryptoCurrencies:
 	return cryptoCurrencies;
 };
 
-const ApiCoinMarketCapTop = (n: number, valuta: string, favorites: CmcCryptoCurrency[]) => {
+const ApiCoinMarketCapTop = async (
+	n: number,
+	valuta: string,
+	favorites: CmcCryptoCurrency[],
+) => {
 	const client: AxiosInstance = axios.create({
 		baseURL: 'https://pro-api.coinmarketcap.com',
 		headers: {'X-CMC_PRO_API_KEY': 'cd836a4e-36d8-4404-8857-7ded29edda69'},
 	});
 
 	return client
-		.get<CMCResponse>(`/v1/cryptocurrency/listings/latest?limit=${n}&convert=${valuta}`)
+		.get<CMCResponse>(
+			`/v1/cryptocurrency/listings/latest?limit=${n}&convert=${valuta}`,
+		)
 		.then((response: AxiosResponse<CMCResponse>) => {
 			let cryptoCurrencies = response.data.data;
 			cryptoCurrencies = addIsFavoriteProperty(favorites, cryptoCurrencies);
@@ -31,6 +42,7 @@ const ApiCoinMarketCapTop = (n: number, valuta: string, favorites: CmcCryptoCurr
 		})
 		.catch((error): any => {
 			console.log('API CoinMarketCap', error);
+			return [];
 		});
 };
 
