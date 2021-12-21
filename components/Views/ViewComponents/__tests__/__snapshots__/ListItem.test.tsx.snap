@@ -24,6 +24,7 @@ exports[`renders correctly 1`] = `
       "padding": 10,
     }
   }
+  testID="touchable-opacity"
 >
   <View
     style={
@@ -40,6 +41,7 @@ exports[`renders correctly 1`] = `
           "width": 130,
         }
       }
+      testID="name"
     >
       Bitcoin
     </Text>
@@ -49,8 +51,9 @@ exports[`renders correctly 1`] = `
           "width": 100,
         }
       }
+      testID="price"
     >
-      $0.000
+      $48734.99
     </Text>
     <Text
       style={
@@ -60,8 +63,9 @@ exports[`renders correctly 1`] = `
           "width": 75,
         }
       }
+      testID="percent"
     >
-      0.00
+      4.91
       %
     </Text>
     <Text

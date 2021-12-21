@@ -31,6 +31,7 @@ const initialState: CryptoDataState = {
 		platform: null,
 		cmc_rank: 0,
 		last_updated: '',
+		isFavorite: false,
 		quote: {
 			USD: {
 				price: 0,

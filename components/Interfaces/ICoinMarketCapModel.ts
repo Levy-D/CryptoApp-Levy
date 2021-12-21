@@ -23,7 +23,7 @@ export interface CmcCryptoCurrency {
 	cmc_rank: number;
 	last_updated: string;
 	quote: Quote;
-	isFavorite?: boolean;
+	isFavorite: boolean;
 }
 
 export interface Platform {

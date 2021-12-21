@@ -12,6 +12,7 @@ import {
 	setIsFavoriteToFalse,
 	setIsFavoriteToTrue,
 } from '../../Redux/Slices/CryptoData';
+import {CmcCryptoCurrency} from '../../Interfaces/ICoinMarketCapModel';
 
 const ListItem = ({item, navigation}: IListItem) => {
 	const dispatch = useDispatch();
@@ -19,88 +20,61 @@ const ListItem = ({item, navigation}: IListItem) => {
 	const stateHighlightChainlink = useSelector(selectStateHighlightChainlink);
 	const valuta = stateDisplayEUR ? 'EUR' : 'USD';
 	const valutaSymbol: string = stateDisplayEUR ? '€' : '$';
-	let price: number = 0;
-	let percent24h: number = 0;
-	if (item.quote[valuta] !== null && item.quote[valuta] !== undefined) {
-		price = item.quote[valuta]!.price;
-		percent24h = item.quote[valuta]!.percent_change_24h;
-	}
+	const {price} = item.quote[valuta]!;
+	const percent24h = item.quote[valuta]!.percent_change_24h;
 
 	// Toggle favorites
-	const toggleFavorite = (): void => {
-		try {
-			if (!item.isFavorite) {
-				dispatch(setIsFavoriteToTrue(item));
-			} else if (item.isFavorite) {
-				dispatch(setIsFavoriteToFalse(item));
-			}
-		} catch (e) {
-			console.log(e);
+	const toggleFavorite = (item: CmcCryptoCurrency): void => {
+		console.log(item.isFavorite);
+		if (!item.isFavorite) {
+			dispatch(setIsFavoriteToTrue(item));
+		}
+
+		if (item.isFavorite) {
+			dispatch(setIsFavoriteToFalse(item));
 		}
 	};
 
-	// Chainlink formatting
-	if (item.id === 1975 && stateHighlightChainlink) {
-		return (
-			<TouchableOpacity
-				style={styles.listItemChainlink}
-				onPress={() => {
-					dispatch(setCryptoDataItem(item));
-					navigation.navigate('Crypto Details');
-				}}>
-				<View style={styles.listItemView}>
-					<Text style={styles.listItemNameChainlink}>{item.name}</Text>
-					<Text style={styles.listItemPriceChainlink}>
-						{price < 1
-							? `${valutaSymbol}${price.toPrecision(4)}`
-							: `${valutaSymbol}${price.toFixed(2)}`}
-					</Text>
-					<Text
-						style={
-							percent24h < 0
-								? styles.listItemPercentNegativeChainlink
-								: styles.listItemPercentPositiveChainlink
-						}>
-						{percent24h.toFixed(2)}%
-					</Text>
+	const isHighlighted: boolean = item.id === 1975 && stateHighlightChainlink;
+	const negativePercent = isHighlighted
+		? styles.listItemPercentNegativeChainlink
+		: styles.listItemPercentNegative;
+	const positivePercent = isHighlighted
+		? styles.listItemPercentPositiveChainlink
+		: styles.listItemPercentPositive;
 
-					<Icon
-						testID="icon-star"
-						style={
-							item.isFavorite
-								? styles.favIconIsFavoriteTrue
-								: styles.favIconIsFavoriteFalse
-						}
-						name="star"
-						onPress={() => toggleFavorite()}></Icon>
-				</View>
-			</TouchableOpacity>
-		);
-	}
-
-	// Regular Formatting
 	return (
 		<TouchableOpacity
-			style={styles.listItem}
+			testID="touchable-opacity"
+			style={isHighlighted ? styles.listItemChainlink : styles.listItem}
 			onPress={() => {
 				dispatch(setCryptoDataItem(item));
 				navigation.navigate('Crypto Details');
 			}}>
 			<View style={styles.listItemView}>
-				<Text style={styles.listItemName}>{item.name}</Text>
-				<Text style={styles.listItemPrice}>
+				<Text
+					testID="name"
+					style={
+						isHighlighted ? styles.listItemNameChainlink : styles.listItemName
+					}>
+					{item.name}
+				</Text>
+				<Text
+					testID="price"
+					style={
+						isHighlighted ? styles.listItemPriceChainlink : styles.listItemPrice
+					}>
+					{}
 					{price < 1
 						? `${valutaSymbol}${price.toPrecision(4)}`
 						: `${valutaSymbol}${price.toFixed(2)}`}
 				</Text>
 				<Text
-					style={
-						percent24h < 0
-							? styles.listItemPercentNegative
-							: styles.listItemPercentPositive
-					}>
+					testID="percent"
+					style={percent24h < 0 ? negativePercent : positivePercent}>
 					{percent24h.toFixed(2)}%
 				</Text>
+
 				<Icon
 					testID="icon-star"
 					style={
@@ -109,13 +83,13 @@ const ListItem = ({item, navigation}: IListItem) => {
 							: styles.favIconIsFavoriteFalse
 					}
 					name="star"
-					onPress={() => toggleFavorite()}></Icon>
+					onPress={() => toggleFavorite(item)}></Icon>
 			</View>
 		</TouchableOpacity>
 	);
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
 	listItem: {
 		justifyContent: 'center',
 		fontSize: 16,

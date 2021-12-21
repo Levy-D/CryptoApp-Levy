@@ -11,11 +11,18 @@ const reducers = combineReducers({
 	cryptoData: cryptoDataReducer,
 });
 
+export const mockStore = (preloadedState?: any) => {
+	const store = configureStore({reducer: reducers, preloadedState});
+	const origDispatch = store.dispatch;
+	store.dispatch = jest.fn(origDispatch);
+	return store;
+};
+
 function render(
 	ui: any,
 	{
 		preloadedState,
-		store = configureStore({reducer: reducers, preloadedState}),
+		store = mockStore(preloadedState),
 		...renderOptions
 	}: any = {},
 ) {
